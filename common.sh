@@ -2,11 +2,12 @@
 
 getKeys() {
   KEYURL=$1
-  if [ ! -d $HOME/.ssh ] ; then
-    mkdir $HOME/.ssh
-    chmod 600 $HOME/.ssh
+  PREF=${2:=$HOME}
+  if [ ! -d $PREF/.ssh ] ; then
+    mkdir $PREF/.ssh
+    chmod 600 $PREF/.ssh
   fi
 
-  curl "$KEYURL" >> $HOME/.ssh/authorized_keys
-  chmod 600 $HOME/.ssh/authorized_keys
+  curl "$KEYURL" >> $PREF/.ssh/authorized_keys
+  chmod 600 $PREF/.ssh/authorized_keys
 }
