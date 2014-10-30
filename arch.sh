@@ -36,16 +36,19 @@ __install_yaourt() {
 
   __install_package yajl
 
-  wget https://aur.archlinux.org/packages/ya/yaourt/yaourt.tar.gz
-  wget https://aur.archlinux.org/packages/pa/package-query/package-query.tar.gz
-  tar xvf package-query.tar.gz
-  tar xvf yaourt.tar.gz
-  cd package-query
-  makepkg -i --asroot --noconfirm
-  cd ../yaourt
-  makepkg -i --asroot --noconfirm
+  # don't run if yaourt is already installed
+  if ! hash yaourt 2>/dev/null ; then
+    wget https://aur.archlinux.org/packages/ya/yaourt/yaourt.tar.gz
+    wget https://aur.archlinux.org/packages/pa/package-query/package-query.tar.gz
+    tar xvf package-query.tar.gz
+    tar xvf yaourt.tar.gz
+    cd package-query
+    makepkg -i --asroot --noconfirm
+    cd ../yaourt
+    makepkg -i --asroot --noconfirm
 
-  PKGMGR="yaourt --noconfirm"
+    PKGMGR="yaourt --noconfirm"
+  fi
 }
 
 
