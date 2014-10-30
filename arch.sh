@@ -46,9 +46,9 @@ __install_yaourt() {
     makepkg -i --asroot --noconfirm
     cd ../yaourt
     makepkg -i --asroot --noconfirm
+  fi
 
     PKGMGR="yaourt --noconfirm"
-  fi
 }
 
 
