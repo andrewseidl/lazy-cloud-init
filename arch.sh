@@ -27,7 +27,7 @@ __install_network_utils() {
 }
 
 __install_sys_utils() {
-  __install_package vim tmux mlocate speedtest-cli
+  __install_package vim tmux mlocate speedtest-cli bc
 }
 
 __install_dev_utils() {
