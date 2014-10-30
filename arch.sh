@@ -34,6 +34,8 @@ __install_yaourt() {
   __install_dev_utils
   __install_network_utils
 
+  __install_package yajl
+
   wget https://aur.archlinux.org/packages/ya/yaourt/yaourt.tar.gz
   wget https://aur.archlinux.org/packages/pa/package-query/package-query.tar.gz
   tar xvf package-query.tar.gz
