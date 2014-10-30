@@ -2,11 +2,11 @@
 
 PKGMGR="echo FIXME "
 
-__update_package_list() {
+update_package_list() {
   $PKGMGR update
 }
 
-__upgrade_packages() {
+upgrade_packages() {
   $PKGMGR upgrade
 }
 
