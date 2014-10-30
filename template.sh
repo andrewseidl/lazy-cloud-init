@@ -23,6 +23,10 @@ __install_package() {
   $PKGMGR install ${packages[@]}
 }
 
+__remove_package() {
+  $PKGMGR remove $@
+}
+
 
 # begin wrappers
 

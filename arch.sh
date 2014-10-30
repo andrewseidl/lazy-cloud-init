@@ -15,6 +15,10 @@ __install_package() {
   $PKGMGR --needed -S $@
 }
 
+__remove_package() {
+  $PKGMGR -R $@
+}
+
 
 # begin wrappers
 
@@ -27,6 +31,7 @@ __install_sys_utils() {
 }
 
 __install_dev_utils() {
+  __remove_package multilib-devel
   __install_package base-devel vim git
 }
 
