@@ -27,7 +27,7 @@ __install_sys_utils() {
 }
 
 __install_dev_utils() {
-  __installPackage base-devel vim git
+  __install_package base-devel vim git
 }
 
 #begin public functions
