@@ -12,7 +12,15 @@ upgrade_packages() {
 
 # ideally have a map between general package names and distro-specific ones
 __install_package() {
-  $PKGMGR install $@
+  packages=()
+  
+  # only install packages that aren't already installed
+  for i in "$@"
+  do
+    $PKGMGR -Q $i || packages += ("$i")
+  done
+
+  $PKGMGR install ${packages[@]}
 }
 
 

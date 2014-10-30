@@ -12,7 +12,7 @@ upgrade_packages() {
 
 # ideally have a map between general package names and distro-specific ones
 __install_package() {
-  $PKGMGR -S $@
+  $PKGMGR --needed -S $@
 }
 
 
