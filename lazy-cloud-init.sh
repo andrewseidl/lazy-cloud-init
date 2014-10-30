@@ -2,7 +2,7 @@
 
 NEWUSER=${NEWUSER:="andrew"}
 
-DEBUG=${DEBUG:=true}
+DEBUG=${DEBUG:=false}
 GHUSER=${GHUSER:="andrewseidl"}
 KEYURL=${KEYURL:="https://github.com/$GHUSER.keys"}
 DOTFILESURL=${KEYURL:="https://github.com/$GHUSER/dotfiles"}
@@ -69,7 +69,7 @@ fi
 
 
 # Let's begin
-source $DISTSH
+source ./$DISTSH
 
 if [ $USER = "root" ] ; then
   update_package_list
