@@ -9,7 +9,7 @@ DOTFILESURL=${KEYURL:="https://github.com/$GHUSER/dotfiles"}
 REPOURL="https://raw.githubusercontent.com/andrewseidl/lazy-cloud-init/master/"
 
 # Figure out our distro
-detectDistro() {
+detect_distro() {
   OS=`uname`
   DIST="unknown"
 
@@ -52,7 +52,7 @@ get_keys() {
 
 # get distro-specific config script
 
-detectDistro
+detect_distro
 DISTSH="$DIST.sh"
 
 if [ $DEBUG != true ] ; then
