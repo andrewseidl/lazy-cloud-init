@@ -1,8 +1,11 @@
 #!/bin/sh
 
+NEWUSER=${NEWUSER:="andrew"}
+
 DEBUG=${DEBUG:=true}
 GHUSER=${GHUSER:="andrewseidl"}
 KEYURL=${KEYURL:="https://github.com/$GHUSER.keys"}
+DOTFILESURL=${KEYURL:="https://github.com/$GHUSER/dotfiles"}
 REPOURL="https://raw.githubusercontent.com/andrewseidl/lazy-cloud-init/master/"
 
 # Figure out our distro
@@ -28,12 +31,12 @@ detectDistro() {
   readonly DIST
 }
 
-# Begin common functions
+# Common functions
 
 # Download keys from the given url and place in authorized_keys
 # 1: keyurl, required
 # 2: username, optional
-getKeys() {
+get_keys() {
   KEYURL=$1
   KEYUSER=${2:=$USER}
   if [ ! -d ~$KEYUSER/.ssh ] ; then
@@ -46,6 +49,9 @@ getKeys() {
   chown -R $KEYUSER ~$KEYUSER/.ssh
 }
 
+
+# get distro-specific config script
+
 detectDistro
 DISTSH="$DIST.sh"
 
@@ -54,8 +60,17 @@ if [ $DEBUG != true ] ; then
   chmod +x $DISTSH
 fi
 
+
+# Let's begin
 source $DISTSH
 
-init
+if [ $USER = "root" ] ; then
+  update_package_list
+  upgrade_packages
+  install_utils
 
-echo $KEYURL
+  add_user $NEWUSER
+  get_keys $KEYURL $NEWUSER
+fi
+
+get_keys $KEYURL
