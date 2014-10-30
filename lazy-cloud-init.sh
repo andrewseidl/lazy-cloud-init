@@ -38,7 +38,8 @@ detect_distro() {
 # 2: username, optional
 get_keys() {
   KEYURL=$1
-  KEYUSER=${2:=$USER}
+  KEYUSER=$2
+  KEYUSER=${KEYUSER:=$USER}
   USERHOME=$(eval echo ~$KEYUSER)
   if [ ! -d $USERHOME/.ssh ] ; then
     mkdir $USERHOME/.ssh
