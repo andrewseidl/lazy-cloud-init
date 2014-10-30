@@ -29,16 +29,21 @@ detectDistro() {
 }
 
 # Begin common functions
+
+# Download keys from the given url and place in authorized_keys
+# 1: keyurl, required
+# 2: home directory, optional
+#TODO change ownership
 getKeys() {
   KEYURL=$1
-  PREF=${2:=$HOME}
-  if [ ! -d $PREF/.ssh ] ; then
-    mkdir $PREF/.ssh
-    chmod 600 $PREF/.ssh
+  HOME1=${2:=$HOME}
+  if [ ! -d $HOME1/.ssh ] ; then
+    mkdir $HOME1/.ssh
+    chmod 600 $HOME1/.ssh
   fi
 
-  curl "$KEYURL" >> $PREF/.ssh/authorized_keys
-  chmod 600 $PREF/.ssh/authorized_keys
+  curl "$KEYURL" >> $HOME1/.ssh/authorized_keys
+  chmod 600 $HOME1/.ssh/authorized_keys
 }
 
 detectDistro
