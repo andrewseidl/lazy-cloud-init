@@ -49,6 +49,13 @@ get_keys() {
   chown -R $KEYUSER ~$KEYUSER/.ssh
 }
 
+# download and configure dotfiles
+clone_dotfiles() {
+  cd ~$1
+  git clone $2 .dotfiles
+  HOME=~$1 .dotfiles/script/bootstrap
+}
+
 
 # get distro-specific config script
 

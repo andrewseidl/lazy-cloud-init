@@ -41,9 +41,3 @@ install_utils() {
 add_user() {
   useradd -m $1
 }
-
-clone_dotfiles() {
-  cd ~$1
-  git clone $2 .dotfiles
-  HOME=~$1 .dotfiles/script/bootstrap
-}
