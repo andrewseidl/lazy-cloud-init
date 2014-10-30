@@ -39,14 +39,15 @@ detect_distro() {
 get_keys() {
   KEYURL=$1
   KEYUSER=${2:=$USER}
-  if [ ! -d ~$KEYUSER/.ssh ] ; then
-    mkdir ~$KEYUSER/.ssh
-    chmod 600 ~$KEYUSER/.ssh
+  USERHOME=$(eval echo ~$KEYUSER)
+  if [ ! -d $USERHOME/.ssh ] ; then
+    mkdir $USERHOME/.ssh
+    chmod 600 $USERHOME/.ssh
   fi
 
-  curl "$KEYURL" >> ~$KEYUSER/.ssh/authorized_keys
-  chmod 600 ~$KEYUSER/.ssh/authorized_keys
-  chown -R $KEYUSER ~$KEYUSER/.ssh
+  curl "$KEYURL" >> $USERHOME/.ssh/authorized_keys
+  chmod 600 $USERHOME/.ssh/authorized_keys
+  chown -R $KEYUSER $USERHOME/.ssh
 }
 
 # download and configure dotfiles
