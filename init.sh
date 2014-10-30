@@ -32,18 +32,18 @@ detectDistro() {
 
 # Download keys from the given url and place in authorized_keys
 # 1: keyurl, required
-# 2: home directory, optional
-#TODO change ownership
+# 2: username, optional
 getKeys() {
   KEYURL=$1
-  HOME1=${2:=$HOME}
-  if [ ! -d $HOME1/.ssh ] ; then
-    mkdir $HOME1/.ssh
-    chmod 600 $HOME1/.ssh
+  KEYUSER=${2:=$USER}
+  if [ ! -d ~$KEYUSER/.ssh ] ; then
+    mkdir ~$KEYUSER/.ssh
+    chmod 600 ~$KEYUSER/.ssh
   fi
 
-  curl "$KEYURL" >> $HOME1/.ssh/authorized_keys
-  chmod 600 $HOME1/.ssh/authorized_keys
+  curl "$KEYURL" >> ~$KEYUSER/.ssh/authorized_keys
+  chmod 600 ~$KEYUSER/.ssh/authorized_keys
+  chown -R $KEYUSER ~$KEYUSER/.ssh
 }
 
 detectDistro
