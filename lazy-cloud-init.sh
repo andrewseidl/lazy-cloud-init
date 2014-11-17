@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 NEWUSER=${NEWUSER:="andrew"}
 
@@ -43,7 +43,7 @@ get_keys() {
   USERHOME=$(eval echo ~$KEYUSER)
   if [ ! -d $USERHOME/.ssh ] ; then
     mkdir $USERHOME/.ssh
-    chmod 600 $USERHOME/.ssh
+    chmod 700 $USERHOME/.ssh
   fi
 
   curl "$KEYURL" >> $USERHOME/.ssh/authorized_keys
