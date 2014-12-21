@@ -10,7 +10,7 @@ REPOURL="https://raw.githubusercontent.com/andrewseidl/lazy-cloud-init/master/"
 
 # Figure out our distro
 detect_distro() {
-  OS=`uname`
+  OS=$(uname)
   DIST="unknown"
 
   if [ "${OS}" = "Linux" ] ; then
